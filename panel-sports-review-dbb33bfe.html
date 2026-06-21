@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>体彩指南 · 持续关注与深度阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f2f4f6;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #1e2a3a;
+            padding: 2rem 1rem;
+        }
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        /* hero 横幅 */
+        .hero {
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02);
+            padding: 3.5rem 2.8rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid #e6eaef;
+            transition: box-shadow 0.2s;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            color: #0b1a2b;
+            margin-bottom: 1.2rem;
+        }
+        .hero h1 span {
+            background: #eef3f9;
+            padding: 0 0.3em;
+            border-radius: 6px;
+            color: #1c4e7a;
+        }
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #415a70;
+            border-left: 3px solid #b3c7db;
+            padding-left: 1.3rem;
+            max-width: 70%;
+        }
+        @media (max-width: 600px) {
+            .hero {
+                padding: 2.2rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero .sub {
+                max-width: 100%;
+            }
+        }
+        /* 背景说明卡片 */
+        .context-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #dfe5ec;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            padding: 2rem 2.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem 2.2rem;
+            align-items: flex-start;
+        }
+        .context-card .icon-box {
+            flex: 0 0 90px;
+            height: 90px;
+            background: #f0f4fa;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #1d4b77;
+            border: 1px solid #d6e0eb;
+        }
+        .context-card .text {
+            flex: 1;
+            min-width: 200px;
+        }
+        .context-card .text h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            color: #122b40;
+        }
+        .context-card .text p {
+            color: #2c4055;
+            margin-bottom: 0.4rem;
+        }
+        .context-card .text p:last-child {
+            margin-bottom: 0;
+        }
+        /* 三段介绍 —— 杂志式卡片网格 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+        @media (max-width: 800px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        .feature-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #e3e9f0;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.02);
+            padding: 2rem 1.8rem 2.2rem;
+            transition: box-shadow 0.15s, transform 0.1s;
+        }
+        .feature-card:hover {
+            box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+        }
+        .feature-card .num {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #6a859e;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.4rem;
+            display: inline-block;
+            border-bottom: 1px dashed #cbd6e3;
+            padding-bottom: 0.2rem;
+        }
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 0.4rem 0 0.8rem;
+            color: #0f263b;
+        }
+        .feature-card p {
+            color: #314a5f;
+            font-size: 0.98rem;
+        }
+        .feature-card .meta {
+            margin-top: 1.2rem;
+            font-size: 0.9rem;
+            color: #516f89;
+            border-top: 1px solid #edf1f6;
+            padding-top: 0.9rem;
+        }
+        /* 页尾访问提示 */
+        .footer-note {
+            background: #ffffff;
+            border-radius: 30px;
+            border: 1px solid #e1e7ee;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            padding: 2.2rem 2.8rem;
+            margin-top: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-note .left {
+            flex: 1;
+            min-width: 180px;
+        }
+        .footer-note .left p {
+            font-size: 1.1rem;
+            color: #1f374e;
+            margin-bottom: 0.2rem;
+        }
+        .footer-note .left .small {
+            font-size: 0.9rem;
+            color: #627e99;
+        }
+        .footer-note .action {
+            margin-left: 1.5rem;
+            background: #1a3853;
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            font-weight: 450;
+            font-size: 1rem;
+            border: 1px solid #1a3853;
+            transition: background 0.15s, box-shadow 0.15s;
+            white-space: nowrap;
+        }
+        .footer-note .action:hover {
+            background: #143046;
+            box-shadow: 0 4px 10px rgba(26,56,83,0.15);
+        }
+        .footer-note .action:active {
+            background: #0f2537;
+        }
+        /* faq 摘要 */
+        .faq-digest {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #e3e9f0;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1.5rem;
+        }
+        .faq-digest h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #0a253b;
+            margin-bottom: 0.8rem;
+        }
+        .faq-digest .qa-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .faq-digest .qa-item .q {
+            font-weight: 500;
+            color: #1b3a54;
+            flex-shrink: 0;
+        }
+        .faq-digest .qa-item .a {
+            color: #3f5b73;
+        }
+        .faq-digest .more {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #496b88;
+            border-top: 1px solid #e9eff5;
+            padding-top: 0.9rem;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #dce2e9;
+            margin: 0.8rem 0;
+        }
+        .note-rights {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #617b94;
+            margin: 2rem 0 0.2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 横幅 -->
+    <header class="hero">
+        <h1>再次回访 · <span>体彩</span> 专题</h1>
+        <div class="sub">
+            收藏夹里的一扇窗：信息密度提升，持续关注赛事与数据方向。
+        </div>
+    </header>
+
+    <!-- 背景说明 -->
+    <section class="context-card">
+        <div class="icon-box">📌</div>
+        <div class="text">
+            <h2>为什么再次打开这个页面？</h2>
+            <p>对于长期关注体育赛事的用户而言，重复访问同一个信息源往往意味着信任与效率。从数据面板到趋势笔记，<a href="https://panel-sports-lottery.com" style="color:#1c4e7a; text-decoration: underline; text-underline-offset:3px;">体彩</a> 相关的内容聚合以精简、克制的方式呈现，不堆积无效数字，只保留有参考价值的维度。</p>
+            <p>背景信息会随着赛季推进迭代，因此将本站加入书签或定期回看，可以获取到较为连贯的视角。</p>
+        </div>
+    </section>
+
+    <!-- 三段自然介绍（杂志卡片） -->
+    <div class="features-grid">
+        <article class="feature-card">
+            <div class="num">01 收藏价值</div>
+            <h3>结构而非噪声</h3>
+            <p>每天面对大量比分与赔率变动，筛选出真正影响判断的变量才有效率。本站采用专题式组织，将联赛、杯赛、历史交叉数据编排为可浏览的卡片，适合深度阅读而非快速刷新。</p>
+            <div class="meta">🔖 适合存入浏览器书签栏</div>
+        </article>
+
+        <article class="feature-card">
+            <div class="num">02 持续关注</div>
+            <h3>周期更新 · 稳定访问</h3>
+            <p>信息页面不追求实时推送，但会在每轮赛事结束后更新趋势摘要。如果你习惯在周末或周中进行复盘，将本站作为固定查阅点，可以节省反复搜索的时间。保持适量信息流，减少认知负担。</p>
+            <div class="meta">📅 建议每周访问 1–2 次</div>
+        </article>
+
+        <article class="feature-card">
+            <div class="num">03 视角与边界</div>
+            <h3>简洁专业 · 不渲染</h3>
+            <p>所有内容围绕 体彩 相关的事实层展开，不提供任何投注建议或诱导性表述。数据与背景说明均基于公开赛事信息，旨在为自行判断提供参考维度。保持独立观点，不过度解读。</p>
+            <div class="meta">⚖️ 客观信息聚合</div>
+        </article>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-digest">
+        <h3>常见关注点 · 摘要</h3>
+        <div class="qa-item">
+            <span class="q">Q:</span>
+            <span class="a">页面数据多久调整一次？</span>
+        </div>
+        <div class="qa-item">
+            <span class="q">A:</span>
+            <span class="a">通常在每个比赛日结束后 24 小时内更新，休赛期会保留历史参考表。</span>
+        </div>
+        <div class="qa-item">
+            <span class="q">Q:</span>
+            <span class="a">是否包含深层分析或预测？</span>
+        </div>
+        <div class="qa-item">
+            <span class="q">A:</span>
+            <span class="a">不包含。本站仅整理结构化的背景与趋势素材，不输出结论性预测。</span>
+        </div>
+        <div class="more">📎 更多条目请直接访问 <a href="https://panel-sports-lottery.com" style="color:#1c4e7a; text-decoration: underline;">体彩</a> 内页索引。</div>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-note">
+        <div class="left">
+            <p>保持关注 · 收藏即用</p>
+            <div class="small">不定期微调内容结构，适合反复翻阅。</div>
+        </div>
+        <a href="https://panel-sports-lottery.com" class="action">体彩</a>
+    </div>
+
+    <div class="note-rights">
+        专题页面 · 信息聚合
+    </div>
+</div>
+</body>
+</html>
